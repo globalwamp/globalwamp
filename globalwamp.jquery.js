@@ -276,14 +276,14 @@
         });
 
       });
-      /*
+      
       $(_this.kml).each(function(k, kml) {
-        $mapa.addKMLLayer({
+        $mapa.addKML({
           nombre: kml.titulo,
           url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.recurso)
         });
       });
-      */
+      
     },
 
     alert: function (msg) {
