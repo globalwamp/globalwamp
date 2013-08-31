@@ -127,12 +127,12 @@
        * así que lo manejo como un caso especial
        */
       _this.opts.field_map = {
-          titulo: "gsx$titulo.$t",
-          capa: "gsx$capa.$t",
-          recurso: "gsx$recurso.$t",
-          tiporecurso: "gsx$tiporecurso.$t",
+          titulo: "gsx$title.$t",
+          capa: "gsx$layer.$t",
+          recurso: "gsx$resource.$t",
+          tiporecurso: "gsx$resourcetype.$t",
           zoom: "gsx$zoom.$t",
-          descripcion: "gsx$descripcion.$t"
+          descripcion: "gsx$description.$t"
       };
 
       _this.entries = _this._mapFields(true);
@@ -146,7 +146,7 @@
       });
 
       _this.wms = grupos.wms;
-      _this.marcadores = grupos.marcador;
+      _this.marcadores = grupos.marker;
       _this.kml = grupos.kml;
 
       if (grupos.center !== undefined) {
@@ -158,20 +158,20 @@
             _this.opts.vistaInicial.zoom = grupos.center[0].zoom;  
           }
 
-          if (grupos.center[0].capa === 'satelite' ) {
+          if (grupos.center[0].layer === 'satelite' ) {
             _this.opts.vistaInicial.capa = 'satellite';  
           }
 
-          if (grupos.center[0].capa === 'globalwampbyn' ) {
+          if (grupos.center[0].layer === 'globalwampbyn' ) {
             _this.$el.addClass('globalwamp_byn');
           }
 
-          if (grupos.center[0].titulo ) {
+          if (grupos.center[0].title ) {
             $(_this.opts.barra_class).show();
             $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html(grupos.center[0].titulo);
           }          
 
-          if (grupos.centro[0].descripcion ) {
+          if (grupos.center[0].description ) {
             $(_this.opts.barra_class).show();
             $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(grupos.centro[0].descripcion);
           }          
