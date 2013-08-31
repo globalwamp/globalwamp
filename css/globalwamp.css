@@ -1,0 +1,307 @@
+.navbar-inverse .navbar-inner {
+        background: #404040;
+        color: inherit;
+        background: rgba(0,0,0,0.7);
+      }
+
+      body {
+        padding-top:0px;
+      }
+      header {
+        
+        background-image: url(../img/bg.png),url(../img/fondo_header.jpg) ;
+        background-repeat: repeat, no-repeat;
+        background-size:4px 4px, 100% auto !important;
+        background-position: 0 0 , 0 bottom;
+        background-attachment: fixed!important;
+        background-color:#009FEF;
+        box-shadow: 0 0 55px #4A5896 inset;
+        color: white;
+        height: auto;  
+        margin: 0 auto; 
+        /*width: 100%; 
+        max-width: 1920px; */
+        position: relative;
+
+      }
+
+      header img {
+        max-width: 45%;
+      }
+      section  h2{
+        font-family: 'Trade Winds', cursive;
+      }
+      section h3{
+        font-family: 'Merienda One', cursive;
+      }
+      section h4{
+        font-family: 'Merienda One', cursive;
+      }
+      #descripcion {
+        
+        background-image: url(../img/bg.png),url(../img/descripcion.jpg) ;
+        background-repeat: repeat, no-repeat;
+        background-size:4px 4px, 106% !important;
+        background-position: 0 0 , 0px 0px;
+        background-attachment: fixed!important;
+        background-color:#055072;
+        box-shadow: 0 0 55px #022d85 inset;
+        color: white;
+        height: auto;  
+        margin: 0 auto; 
+        position: relative;
+        padding: 15px;
+        text-shadow:1px 0 2px black;
+      }
+      #descricion a {color:#FFD600!important;}
+      #generator{
+        
+        background-image: url(../img/bg.png),url(../img/generator.jpg) ;
+        background-repeat: repeat, no-repeat;
+        background-size:4px 4px, 106% !important;
+        background-position: 0 0 , 0px 0px;
+        background-attachment: fixed!important;
+        background-color:#3d6f42;
+        box-shadow: 0 0 55px #015c0a inset;
+        color: white;
+        height: auto;  
+        margin: 0 auto; 
+        position: relative;
+        padding: 15px;
+        text-shadow:1px 0 2px black;
+
+      }
+      #comoseusa{
+        background-image: url(../img/bg.png),url(../img/comoseusa.jpg) ;
+        background-repeat: repeat, no-repeat;
+        background-size:4px 4px, 106% !important;
+        background-position: 0 0 , 0px 0px;
+        background-attachment: fixed!important;
+        background-color:#f23901;
+        box-shadow: 0 0 55px #bf0f02 inset;
+        color: white;
+        height: auto;  
+        margin: 0 auto; 
+        position: relative;
+        padding: 15px;
+        text-shadow:1px 0 2px black;
+
+      }
+      #ejemplos{
+        background-image: url(../img/bg.png),url(../img/ejemplo.jpg) ;
+        background-repeat: repeat, no-repeat;
+        background-size:4px 4px, 106% !important;
+        background-position: 0 0 , 0px 0px;
+        background-attachment: fixed!important;
+        background-color:#ff0000;
+        box-shadow: 0 0 55px #09000d inset;
+        color: white;
+        height: auto;  
+        margin: 0 auto; 
+        position: relative;
+        padding: 15px;
+        text-shadow:1px 0 2px black;
+
+      }
+      .hero-unit {
+        padding: 5px;
+      }
+      .hero-unit h1 {
+        font-family: 'News Cycle',sans-serif;
+        text-rendering: optimizelegibility;
+        color: white;        
+      }
+      .hero-unit h2 {
+        font-family: 'Merriweather',serif !important;        
+        text-rendering: optimizelegibility;
+        color: white;
+        text-shadow:0 0 3px black;
+      }
+      h2 small {
+        font-size: 7vw;
+        color:white;
+      }
+      .hero-unit h4 {
+        font-family: 'Merriweather',serif !important;        
+        text-rendering: optimizelegibility;
+      }
+      .page-header {
+        padding-bottom: 9px;
+        margin: 0px 0 30px;
+        border-bottom: none;
+        color: white;}
+
+      .page-header h2 {
+        color: white;
+        background: inherit;
+        background: none;
+        font-size: 9vw;
+        line-height: 6vw;
+        text-align: center;
+        text-shadow:0 0 5px black;
+        margin-top: -15px;
+      }
+      .alert {
+        border: 1px solid #c09853;
+      }
+
+      section {
+        padding-top: 0px;
+      }
+      span.Vis  {
+        color: #FFF;
+        font-size: .9em;
+        line-height: 70px;
+        display: inline-block;
+        background-color: #0088cc;
+        padding: 10px;
+        padding-top: 0px;
+        padding-bottom: 2px;
+        position: relative;
+        margin-left: .1em;
+        bottom: .1em;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+
+      #mapa img {
+        max-width:none;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 70px;
+        border-top: 1px solid #e5e5e5;
+        background-color: #f5f5f5;
+        color:inherit;
+      }
+      .footer p {
+        margin-bottom: 0;
+        color: #777;
+        background:inherit;
+      }
+      .footer-links {
+        margin: 10px 0;
+      }
+      .footer-links li {
+        display: inline;
+        padding: 0 2px;
+      }
+      .footer-links li:first-child {
+        padding-left: 0;
+      }
+
+      .hero-unit {
+        padding: 0 60px 30px;
+        margin-bottom: 0px!important;
+        font-size: 18px;
+        font-weight: 200;
+        line-height: 30px;
+        color: inherit;
+        background-color: #eeeeee;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+      }
+
+      .alert-header {
+      padding: 8px 35px 8px 14px;
+      margin-top: 41px;
+      margin-bottom: 0px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      background-color: rgba(10, 49, 255, 0.5);
+      border: none;
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 -4px 17px -3px rgba(0, 0, 0, 0.7) inset;
+      color:white;
+      }
+      .alert-header a{
+        color:#ffdac8;
+        text-shadow: 0 0 3px black;}
+
+      .lead{
+        background-color: white;
+        padding: 5px 20px;
+        transform: skew(-18deg,-2deg);
+        -ms-transform: skew(-18deg,-2deg); /* IE 9 */
+        -webkit-transform: skew(-18deg,-2deg); /* Safari and Chrome */
+        display: inline-block;
+        border: 2px solid black;
+        border-left-width:6px;
+        border-right-width: 1px; 
+       /*min-width: 10%;
+        max-width: 60%;*/
+        box-shadow: -4px 5px 2px rgba(0,0,0,0.3);
+        text-shadow:none;
+        color:black;
+        font-size: 12px;
+        margin-bottom: 0px;
+      }
+
+      .lead .textorecto{
+        transform: skew(18deg,2deg);
+        -ms-transform: skew(18deg,2deg); /* IE 9 */
+        -webkit-transform: skew(18deg,2deg); /* Safari and Chrome */
+      }
+      .lead h4.textorecto {
+        font-size: 16px;
+        color: black;
+        margin: 5px 0;
+        font-family: 'Merienda One', cursive;
+      }
+
+       .lead .textorecto .btn {
+        margin-bottom: 15px;
+      }
+      .tradewinds{
+        font-family: 'Trade Winds', cursive;
+      }
+      .Merienda {
+        font-family: 'Merienda One', cursive;
+      }
+
+      .bg{
+        background: rgba(0,0,0,0.5);
+        box-shadow: 0 0 5px black inset;
+        border:none;
+      }
+
+      .thumbnail{
+        background: rgba(0,0,0,0.5);
+        box-shadow: 0 0 5px black inset;
+        border:none;
+      }
+      code{
+        color:#009FEF;
+        text-shadow:none;
+      }
+      .divider{
+        margin:25px;
+        border-top: 1px solid white;
+        box-shadow: 0 0 2px black; 
+      }
+      #ejemplos a{
+        color:#ff9f00;
+        text-shadow:0 0 2px black;
+      }
+      #ejemplos p {
+        color:white;
+      }
+      #generator legend {
+        color:#b5ddae;
+        ;
+      }
+      #generator a {
+        color:#2cc412;
+      }
+      #generator a.btn  {
+        color:white;
+        ;
+      }
+      .input-append .add-on, .input-prepend .add-on {
+        background: transparent;
+      }
