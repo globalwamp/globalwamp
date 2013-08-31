@@ -6,7 +6,7 @@
  */
 ;(function($){
 
-  function Argenmapvis(el, options) {
+  function GlobalWAMP(el, options) {
 
     //Defaults:
     this.defaults = {
@@ -49,7 +49,7 @@
   }
 
   // Separate functionality from object creation
-  Argenmapvis.prototype = {
+  GlobalWAMP.prototype = {
 
     init: function() {
       var _this = this;
@@ -149,26 +149,26 @@
       _this.marcadores = grupos.marcador;
       _this.kml = grupos.kml;
 
-      if (grupos.centro !== undefined) {
-        _this.parseCoordenadas(grupos.centro[0].recurso, function(latlng) {
+      if (grupos.center !== undefined) {
+        _this.parseCoordenadas(grupos.center[0].recurso, function(latlng) {
           _this.opts.vistaInicial.lat = latlng.lat;
           _this.opts.vistaInicial.lng = latlng.lng;
 
-          if (grupos.centro[0].zoom !== undefined) {
-            _this.opts.vistaInicial.zoom = grupos.centro[0].zoom;  
+          if (grupos.center[0].zoom !== undefined) {
+            _this.opts.vistaInicial.zoom = grupos.center[0].zoom;  
           }
 
-          if (grupos.centro[0].capa === 'satelite' ) {
+          if (grupos.center[0].capa === 'satelite' ) {
             _this.opts.vistaInicial.capa = 'satellite';  
           }
 
-          if (grupos.centro[0].capa === 'mapaignbyn' ) {
-            _this.$el.addClass('argenmapvis_byn');
+          if (grupos.center[0].capa === 'globalwampbyn' ) {
+            _this.$el.addClass('globalwamp_byn');
           }
 
-          if (grupos.centro[0].titulo ) {
+          if (grupos.center[0].titulo ) {
             $(_this.opts.barra_class).show();
-            $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html(grupos.centro[0].titulo);
+            $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html(grupos.center[0].titulo);
           }          
 
           if (grupos.centro[0].descripcion ) {
@@ -231,7 +231,7 @@
       var _this = this;
 
       $mapa = _this.$el;
-      $mapa.argenmap();
+      $mapa.leaflet();
       
       if (_this.opts.vistaInicial.zoom !== undefined) {
         $mapa.zoom( parseInt(_this.opts.vistaInicial.zoom) );      
@@ -242,9 +242,9 @@
       }
 
       if (_this.opts.vistaInicial.lat !== undefined) {
-        $mapa.centro( _this.opts.vistaInicial.lat, _this.opts.vistaInicial.lng );      
+        $mapa.center( _this.opts.vistaInicial.lat, _this.opts.vistaInicial.lng );      
       }
-
+      /*
       $(_this.wms).each(function(k,capa) {
         $mapa.agregarCapaWMS({
           nombre: capa.titulo,
@@ -252,7 +252,7 @@
           url: capa.recurso
         });
       });
-
+      */
       $(_this.marcadores).each(function(k, marcador) {
         _this.parseCoordenadas(marcador.recurso, function(latlng) {
           if (! latlng.lat ) {
@@ -262,23 +262,28 @@
           $("<h3 />").html(marcador.titulo).appendTo($contenido);
           $("<div />").html(marcador.descripcion).appendTo($contenido);
 
-          $mapa.agregarMarcador({
-            nombre: marcador.titulo,
-            icono: marcador.capa,
+          var i = new L.icon( {
+            iconUrl: marcador.capa,
+          });
+          $mapa.addMarker({
+            title: marcador.titulo,
+            icon: i,
             lat: latlng.lat,
             lng: latlng.lng,
-            contenido: $contenido.html(),
+            html: $contenido.html(),
           });
         
         });
 
       });
+      /*
       $(_this.kml).each(function(k, kml) {
-        $mapa.agregarCapaKML({
+        $mapa.addKMLLayer({
           nombre: kml.titulo,
           url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.recurso)
         });
-      })
+      });
+      */
     },
 
     alert: function (msg) {
@@ -477,12 +482,12 @@
   };
 
   // The actual plugin
-  $.fn.argenmapvis = function(options) {
+  $.fn.globalwamp = function(options) {
     if(this.length) {
       this.each(function() {
-        var rev = new Argenmapvis(this, options);
+        var rev = new GlobalWAMP(this, options);
         rev.init();
-        $(this).data('argenmapvis', rev);
+        $(this).data('globalwamp', rev);
       });
     }
   };
