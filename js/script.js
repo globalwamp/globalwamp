@@ -31,11 +31,6 @@ $(document).ready(function(){
 
  });	
 
-}); 
-
-$(document).ready(function(){
-	// Cache the Window object
-	$window = $(window);
                 
    $('section[data-type="background"]').each(function(){
      var $bgobj = $(this); // assigning the object
@@ -56,12 +51,6 @@ $(document).ready(function(){
 
  });	
 
-}); 
-
-
-$(document).ready(function(){
-	// Cache the Window object
-	$window = $(window);
                 
    $('section#ejemplos').each(function(){
      var $bgobj = $(this); // assigning the object
