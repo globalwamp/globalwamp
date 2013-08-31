@@ -117,7 +117,7 @@
     $(document).ready(function() {
       var source = $.url().param('source');
       if (source !== undefined) {
-        $('#mapa').argenmapvis({source : source});  
+        $('#mapa').globalwamp({source : source});  
       } else {
         $('#mapa').html('Se necesita el parámetro source en la URL');
       }
