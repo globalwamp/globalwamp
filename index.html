@@ -52,23 +52,25 @@
         </div>
       </div>
     </div>      
-          
+    </div>   
     <header class="hero-unit hidden-phone" data-speed="5" data-type="background">
-        <div class="container-fluid text-center">
+      <div class="container-fluid text-center">
           <!--div class="row-fluid"> 
             <div class="span12  text-center"><h2><span class="wamp hidden-tablet hidden-phone">Web Anamorphic Maps Player</span></h2>
           </div--><!--span12-->
-          </div><!--row-fluid-->
+          <!--</div>row-fluid-->
           <div class="row-fluid"> 
-           <div class="span12  text-center"><h2><span class="wamp hidden-phone"><b style="color:red;">W</b>onderful <b style="color:red;">A</b>pproach on <b style="color:red;">M</b>aps for <b style="color:red;">P</b>eriodistas</span></h2>
-         </div><!-span12->          
+           <div class="span12  text-center">
+            <h2><span class="wamp hidden-phone"><b style="color:red;">W</b>onderful <b style="color:red;">A</b>pproach on <b style="color:red;">M</b>aps for <b style="color:red;">P</b>eriodistas</span></h2>
+            </div><!--span12-->
+          </div>
           <div class="row-fluid"> 
             <div class="span5">
               <img src="img/globalwamp.png" alt="GlobalWamp">
               <!--h1>Argen<span class="Vis">WAMP</span><br/></h1-->
             </div><!--span6-->
             <div class="span7">
-              <iframe title="mapa creado con GlobalWamp" style="width:100%;border:1px dashed #ccc" src='iframe.html?source=0AqdTbs1TYvZKdE10TFRsa1BISE50amVTeUVNUDVqNkE;' height='290' frameborder='0'></iframe>   
+              <iframe title="mapa creado con GlobalWamp" style="width:100%;border:1px dashed #ccc" src='iframe.html?source=0AqdTbs1TYvZKdE10TFRsa1BISE50amVTeUVNUDVqNkE;' height='290'></iframe>   
             </div><!--span6-->
           </div><!--row-fluid-->
       </div>
@@ -123,6 +125,7 @@
                 <li>
                   En el menú Archivo, seleccioná <em>"Publicar en la Web"</em>.
                 </li>
+                <li>
                   En la siguiente ventana, tildá la casilla <em>"Volver a publicar automáticamente cuando se realicen los cambios"</em>
                 </li>
                 <li>
@@ -196,7 +199,7 @@
           </div><!--span8-->
         </div><!--row-fluid-->       
       </section>
-      <section id="previsualizacion" style="display:none" id="preview-embed">
+      <section style="display:none" id="preview-embed">
         <div class="page-header">
           <h2>Previsualización</h2>
         </div>       
@@ -345,8 +348,7 @@
       <div class="container">
         <div class="row-fluid">
           <div class="span12">
-            <a target="_blank" href="https://plus.google.com/113215844390588012082?rel=author">@oskosk</a> 2013 . Desarrollado para y durante el <a target="_blank" href="http://datospublicos.gob.ar/hackatonprogramar/">Hackatón programAR</a>.<br/>
-            <a target="_blank" href="http://github.com/oskosk/globalwamp">Repo en Github</a>.            
+            <a target="_blank" href="http://github.com/globalwamp/globalwamp">Repo en Github</a>.            
           </div>  
         </div>
       </div>
@@ -360,7 +362,7 @@
 
             //console.log(google_docs_url);
           var iframe = "&lt;iframe src='{url_embed}?source={source}&amp;' width='{width}' height='{height}' frameborder='0'&gt;&lt;/iframe&gt;";
-          var url_embed = 'http://argenwamp.com.ar/iframe.html';
+          var url_embed = 'http://olopez.com.ar/globalwamp/globalwamp/iframe.html';
           if ( google_docs_url) {
             id = $.url(google_docs_url).param('key');
           } else {
