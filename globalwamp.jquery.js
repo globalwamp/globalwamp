@@ -1,6 +1,6 @@
 /**
  *
- * argenmap.vis. Plugin de jquery que carga una vista de mapa
+ * globalwamp. Plugin de jquery que carga una vista de mapa
  * descripta en json sobre un mapa de argenmap.
  * acepta 
  */
@@ -20,17 +20,17 @@
         //mapa de campos
         //yo le doy bola solo a titulo capa recurso tiporecurso
         //zoom y descripcion.
-        // si en tu json, tenes otros campos, pasale un objeto .argenwamp({objeto})
+        // si en tu json, tenes otros campos, pasale un objeto .globalwamp({objeto})
         // con la propiedad  field_map y el mapeo del nombre de tus campos a estos.
         // Por default el mapa es un mapeo dummy.
       field_map : {
 
-        titulo: "titulo",
-        capa: "capa",
-        recurso: "recurso",
-        tiporecurso: "tiporecurso",
+        title: "title",
+        layer: "layer",
+        resource: "resource",
+        resourcetype: "resourcetype",
         zoom: "zoom",
-        descripcion: "descripcion"
+        description: "description"
       },
       barra_class: '.barra',
       barra_titulo_class: '.titulo',
@@ -142,7 +142,7 @@
       var _this = this;
 
       var grupos = _this.entries.groupBy(function(item) {
-        return item.tiporecurso;
+        return item.resourcetype;
       });
 
       _this.wms = grupos.wms;
@@ -173,7 +173,7 @@
 
           if (grupos.center[0].description ) {
             $(_this.opts.barra_class).show();
-            $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(grupos.centro[0].descripcion);
+            $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(grupos.center[0].descripcion);
           }          
 
           deferred.resolve();
@@ -289,7 +289,7 @@
     alert: function (msg) {
       var _this = this;
       $(_this.opts.barra_class).fadeIn();
-      $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html("argenWAMP - Error en el mapa");
+      $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html("globalWAMP - Error en el mapa");
       $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(msg);
     },
 
