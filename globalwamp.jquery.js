@@ -15,11 +15,11 @@
         lat: -34,
         lng: -59,
         zoom: undefined,
-        capa: undefined
+        layer: undefined
       },
         //mapa de campos
-        //yo le doy bola solo a titulo capa recurso tiporecurso
-        //zoom y descripcion.
+        //yo le doy bola solo a title, layer, resource, resourcetype
+        //zoom & description.
         // si en tu json, tenes otros campos, pasale un objeto .globalwamp({objeto})
         // con la propiedad  field_map y el mapeo del nombre de tus campos a estos.
         // Por default el mapa es un mapeo dummy.
@@ -43,7 +43,7 @@
     //Privates:
     this.$el = $(el);
     this.entries = [];
-    this.marcadores = [];
+    this.markers = [];
     this.wms = [];
     this.kml = [];
   }
@@ -110,7 +110,7 @@
          _this.entries = data.feed.entry;
          //paso el dererred porque el cálculo quizás
          // es asincrónico porque el usuario puede usar
-         // texto para geocodificar en el campo recurso de la entry texto
+         // texto para geocodificar en el campo resource de la entry texto
          _this.GDocsJSON2PlainJSON();
          _this.parsePlainJSON(deferred);
       }).fail(function() {
@@ -127,12 +127,12 @@
        * así que lo manejo como un caso especial
        */
       _this.opts.field_map = {
-          titulo: "gsx$title.$t",
-          capa: "gsx$layer.$t",
-          recurso: "gsx$resource.$t",
-          tiporecurso: "gsx$resourcetype.$t",
+          title: "gsx$title.$t",
+          layer: "gsx$layer.$t",
+          resource: "gsx$resource.$t",
+          resourcetype: "gsx$resourcetype.$t",
           zoom: "gsx$zoom.$t",
-          descripcion: "gsx$description.$t"
+          description: "gsx$description.$t"
       };
 
       _this.entries = _this._mapFields(true);
@@ -142,15 +142,17 @@
       var _this = this;
 
       var grupos = _this.entries.groupBy(function(item) {
+        console.log(item);
         return item.resourcetype;
       });
 
       _this.wms = grupos.wms;
-      _this.marcadores = grupos.marker;
+      _this.markers = grupos.marker;
       _this.kml = grupos.kml;
 
       if (grupos.center !== undefined) {
-        _this.parseCoordenadas(grupos.center[0].recurso, function(latlng) {
+        _this.parseCoordenadas(grupos.center[0].resource, function(latlng) {
+          console.log(latlng);
           _this.opts.vistaInicial.lat = latlng.lat;
           _this.opts.vistaInicial.lng = latlng.lng;
 
@@ -159,7 +161,7 @@
           }
 
           if (grupos.center[0].layer === 'satelite' ) {
-            _this.opts.vistaInicial.capa = 'satellite';  
+            _this.opts.vistaInicial.layer = 'satellite';  
           }
 
           if (grupos.center[0].layer === 'globalwampbyn' ) {
@@ -232,41 +234,41 @@
 
       $mapa = _this.$el;
       $mapa.leaflet();
-      
+      console.log(_this.opts.vistaInicial);
       if (_this.opts.vistaInicial.zoom !== undefined) {
         $mapa.zoom( parseInt(_this.opts.vistaInicial.zoom) );      
       }
 
-      if (_this.opts.vistaInicial.capa !== undefined) {
-        $mapa.capaBase( _this.opts.vistaInicial.capa );      
+      if (_this.opts.vistaInicial.layer !== undefined) {
+        $mapa.capaBase( _this.opts.vistaInicial.layer );      
       }
 
       if (_this.opts.vistaInicial.lat !== undefined) {
         $mapa.center( _this.opts.vistaInicial.lat, _this.opts.vistaInicial.lng );      
       }
       /*
-      $(_this.wms).each(function(k,capa) {
+      $(_this.wms).each(function(k,layer) {
         $mapa.agregarCapaWMS({
-          nombre: capa.titulo,
-          capas: capa.capa,
-          url: capa.recurso
+          nombre: layer.title,
+          layer: layer.layer,
+          url: layer.resrouce
         });
       });
       */
-      $(_this.marcadores).each(function(k, marcador) {
-        _this.parseCoordenadas(marcador.recurso, function(latlng) {
+      $(_this.markers).each(function(k, marker) {
+        _this.parseCoordenadas(marker.resource, function(latlng) {
           if (! latlng.lat ) {
             return;
           }
           var $contenido = $('<div />');
-          $("<h3 />").html(marcador.titulo).appendTo($contenido);
-          $("<div />").html(marcador.descripcion).appendTo($contenido);
+          $("<h3 />").html(marker.title).appendTo($contenido);
+          $("<div />").html(marker.description).appendTo($contenido);
 
           var i = new L.icon( {
-            iconUrl: marcador.capa,
+            iconUrl: marker.layer,
           });
           $mapa.addMarker({
-            title: marcador.titulo,
+            title: marker.title,
             icon: i,
             lat: latlng.lat,
             lng: latlng.lng,
@@ -280,7 +282,7 @@
       $(_this.kml).each(function(k, kml) {
         $mapa.addKML({
           nombre: kml.titulo,
-          url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.recurso)
+          url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.resource)
         });
       });
       
