@@ -32,9 +32,9 @@
         zoom: "zoom",
         description: "description"
       },
-      barra_class: '.barra',
-      barra_titulo_class: '.titulo',
-      barra_descripcion_class: '.descripcion'
+      bar_class: '.bar',
+      bar_title_class: '.title',
+      bar_descripcion_class: '.descripcion'
     };
 
     //Extending options:
@@ -58,7 +58,7 @@
           _this.magic();  
           _this.$el.spin(false);
       }).fail(function() {
-        console.log('source inválido');
+        console.log('Invalid source');
         _this.$el.spin(false);
       });
     },
@@ -142,7 +142,6 @@
       var _this = this;
 
       var grupos = _this.entries.groupBy(function(item) {
-        console.log(item);
         return item.resourcetype;
       });
 
@@ -152,7 +151,6 @@
 
       if (grupos.center !== undefined) {
         _this.parseCoordenadas(grupos.center[0].resource, function(latlng) {
-          console.log(latlng);
           _this.opts.vistaInicial.lat = latlng.lat;
           _this.opts.vistaInicial.lng = latlng.lng;
 
@@ -169,13 +167,13 @@
           }
 
           if (grupos.center[0].title ) {
-            $(_this.opts.barra_class).show();
-            $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html(grupos.center[0].titulo);
+            $(_this.opts.bar_class).show();
+            $(_this.opts.bar_class + ' ' + _this.opts.bar_title_class).html(grupos.center[0].title);
           }          
 
           if (grupos.center[0].description ) {
-            $(_this.opts.barra_class).show();
-            $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(grupos.center[0].descripcion);
+            $(_this.opts.bar_class).show();
+            $(_this.opts.bar_class + ' ' + _this.opts.bar_descripcion_class).html(grupos.center[0].descripcion);
           }          
 
           deferred.resolve();
@@ -231,21 +229,24 @@
 
     magic: function () {
       var _this = this;
+      var map_options = {};
 
       $mapa = _this.$el;
-      $mapa.leaflet();
-      console.log(_this.opts.vistaInicial);
+      if (_this.opts.vistaInicial.lat !== undefined) {
+        map_options.center = [ _this.opts.vistaInicial.lat, _this.opts.vistaInicial.lng ];      
+      }  
+
       if (_this.opts.vistaInicial.zoom !== undefined) {
-        $mapa.zoom( parseInt(_this.opts.vistaInicial.zoom) );      
+        map_options.zoom = parseInt(_this.opts.vistaInicial.zoom);      
       }
+      
+      $mapa.leaflet(map_options);
 
       if (_this.opts.vistaInicial.layer !== undefined) {
         $mapa.capaBase( _this.opts.vistaInicial.layer );      
       }
 
-      if (_this.opts.vistaInicial.lat !== undefined) {
-        $mapa.center( _this.opts.vistaInicial.lat, _this.opts.vistaInicial.lng );      
-      }
+
       /*
       $(_this.wms).each(function(k,layer) {
         $mapa.agregarCapaWMS({
@@ -281,7 +282,7 @@
       
       $(_this.kml).each(function(k, kml) {
         $mapa.addKML({
-          nombre: kml.titulo,
+          nombre: kml.title,
           url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.resource)
         });
       });
@@ -290,9 +291,9 @@
 
     alert: function (msg) {
       var _this = this;
-      $(_this.opts.barra_class).fadeIn();
-      $(_this.opts.barra_class + ' ' + _this.opts.barra_titulo_class).html("globalWAMP - Error en el mapa");
-      $(_this.opts.barra_class + ' ' + _this.opts.barra_descripcion_class).html(msg);
+      $(_this.opts.bar_class).fadeIn();
+      $(_this.opts.bar_class + ' ' + _this.opts.bar_title_class).html("globalWAMP - Error en el mapa");
+      $(_this.opts.bar_class + ' ' + _this.opts.bar_descripcion_class).html(msg);
     },
 
     parseCoordenadas: function  (texto, callback, context) {

@@ -27,7 +27,7 @@
         top: 0;
         left: 0;
         padding: 12px;
-        z-index:110;
+        z-index:1100;
         width:50%;
         background: url('img/overlay.png') repeat 0 0;
         color: #FFF;
@@ -123,7 +123,7 @@
         $('#mapa').html('Se necesita el parámetro source en la URL');
       }
       $('.close').click(function(){
-        $('.barra').fadeOut();
+        $('.bar').fadeOut();
       })      
     });
 
@@ -135,10 +135,10 @@
   <body>
     <div class="wrapper">
       <div id="mapa">
-        <div class="barra" style="display:none">
+        <div class="bar" style="display:none">
           <button class="close" style="float: right;">×</button>
-          <span class="titulo"></span>
-          <span class="descripcion"></span>
+          <span class="title"></span>
+          <span class="description"></span>
         </div>
       </div>
     </div>
