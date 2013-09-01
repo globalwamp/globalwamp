@@ -11,66 +11,66 @@
 $(document).ready(function(){
 	// Cache the Window object
 	$window = $(window);
-                
-   $('header[data-type="background"]').each(function(){
-     var $bgobj = $(this); // assigning the object
-                    
-      $(window).scroll(function() {
-                    
-		// Scroll the background at var speed
-		// the yPos is a negative value because we're scrolling it UP!								
-		var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
-		
-		// Put together our final background position
-		var coords = '10% '+ yPos + 'px';
 
-		// Move the background
-		$bgobj.css({ backgroundPosition: coords });
-		
-}); // window scroll Ends
+	$('header[data-type="background"]').each(function(){
+		var $bgobj = $(this); // assigning the object
 
- });	
+		$(window).scroll(function() {
 
-                
-   $('section[data-type="background"]').each(function(){
-     var $bgobj = $(this); // assigning the object
-                    
-      $(window).scroll(function() {
-                    
-		// Scroll the background at var speed
-		// the yPos is a negative value because we're scrolling it UP!								
-		var yPos = -($window.scrollBottom() / $bgobj.data('speed')); 
-		
-		// Put together our final background position
-		var coords = '10% '+ yPos + 'px';
+			// Scroll the background at var speed
+			// the yPos is a negative value because we're scrolling it UP!								
+			var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
 
-		// Move the background
-		$bgobj.css({ backgroundPosition: coords });
-		
-}); // window scroll Ends
+			// Put together our final background position
+			var coords = '10% '+ yPos + 'px';
 
- });	
+			// Move the background
+			$bgobj.css({ backgroundPosition: coords });
+
+		}); // window scroll Ends
+
+	});	
 
                 
-   $('section#ejemplos').each(function(){
-     var $bgobj = $(this); // assigning the object
-                    
-      $(window).scroll(function() {
-                    
-		// Scroll the background at var speed
-		// the yPos is a negative value because we're scrolling it UP!								
-		var yPos = -($window.scrollBottom() / $bgobj.data('speed')); 
-		
-		// Put together our final background position
-		var coords = '10% '+ yPos + 'px';
+	$('section[data-type="background"]').each(function(){
+		var $bgobj = $(this); // assigning the object
 
-		// Move the background
-		$bgobj.css({ backgroundPosition: coords 
-		});
-		
-}); // window scroll Ends
+		$(window).scroll(function() {
 
- });	
+			// Scroll the background at var speed
+			// the yPos is a negative value because we're scrolling it UP!	
+			//window no tiene metodo scrollBottom, solo scrollTop!!!!							
+			var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
+
+			// Put together our final background position
+			var coords = '10% '+ yPos + 'px';
+
+			// Move the background
+			$bgobj.css({ backgroundPosition: coords });
+
+		}); // window scroll Ends
+
+	});
+
+
+	$('section#ejemplos').each(function(){
+		var $bgobj = $(this); // assigning the object
+
+		$(window).scroll(function() {
+
+			// Scroll the background at var speed
+			// the yPos is a negative value because we're scrolling it UP!								
+			var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
+
+			// Put together our final background position
+			var coords = '10% '+ yPos + 'px';
+
+			// Move the background
+			$bgobj.css({ backgroundPosition: coords});
+
+		}); // window scroll Ends
+
+	});	
 
 });
 /* 
