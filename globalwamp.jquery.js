@@ -34,7 +34,7 @@
       },
       bar_class: '.bar',
       bar_title_class: '.title',
-      bar_descripcion_class: '.descripcion'
+      bar_description_class: '.description'
     };
 
     //Extending options:
@@ -173,7 +173,7 @@
 
           if (grupos.center[0].description ) {
             $(_this.opts.bar_class).show();
-            $(_this.opts.bar_class + ' ' + _this.opts.bar_descripcion_class).html(grupos.center[0].descripcion);
+            $(_this.opts.bar_class + ' ' + _this.opts.bar_description_class).html(grupos.center[0].description);
           }          
 
           deferred.resolve();
@@ -293,7 +293,7 @@
       var _this = this;
       $(_this.opts.bar_class).fadeIn();
       $(_this.opts.bar_class + ' ' + _this.opts.bar_title_class).html("globalWAMP - Error en el mapa");
-      $(_this.opts.bar_class + ' ' + _this.opts.bar_descripcion_class).html(msg);
+      $(_this.opts.bar_class + ' ' + _this.opts.bar_description_class).html(msg);
     },
 
     parseCoordenadas: function  (texto, callback, context) {
