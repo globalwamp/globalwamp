@@ -9,7 +9,7 @@
       }
       header {
         
-        background-image: url(../img/bg.png),url(../img/fondo_header.jpg) ;
+        background-image: url(img/bg.png),url(img/fondo_header.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 100% auto !important;
         background-position: 0 0 , 0 bottom;
@@ -39,7 +39,7 @@
       }
       #descripcion {
         
-        background-image: url(../img/bg.png),url(../img/descripcion.jpg) ;
+        background-image: url(img/bg.png),url(img/descripcion.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
@@ -56,7 +56,7 @@
       #descricion a {color:#FFD600!important;}
       #generator{
         
-        background-image: url(../img/bg.png),url(../img/generator.jpg) ;
+        background-image: url(img/bg.png),url(img/generator.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
@@ -72,7 +72,7 @@
 
       }
       #comoseusa{
-        background-image: url(../img/bg.png),url(../img/comoseusa.jpg) ;
+        background-image: url(img/bg.png),url(img/comoseusa.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
@@ -88,7 +88,7 @@
 
       }
       #ejemplos{
-        background-image: url(../img/bg.png),url(../img/ejemplo.jpg) ;
+        background-image: url(img/bg.png),url(img/ejemplo.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
