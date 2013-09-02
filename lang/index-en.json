@@ -1,8 +1,9 @@
 {
-	"goToDescripcion":"description",
-	"goToGenerar":"",
-	"goToComoUsar":"",
-	"tituloGenerar":"Make your own map",
-	"tituloGenerarsmall":"from a spreadsheet",
-	"tituloReq":""
+	"goToDescripcion":"Description",
+	"goToGenerar":"Make your map",
+	"goToComoUsar":"How to use",
+	"tituloGenerar":"Build your map",
+	"tituloGenerarsmall":"straight from a spreadsheet.",
+	"tituloReq":"Requirements",
+
 }
