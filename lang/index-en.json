@@ -1,9 +1,25 @@
 {
 	"goToDescripcion":"Description",
-	"goToGenerar":"Make your map",
+	"goToGenerar":"Build your map",
 	"goToComoUsar":"How to use",
-	"tituloGenerar":"Build your map",
-	"tituloGenerarsmall":"straight from a spreadsheet.",
+	"tituloGenerar":"Build your map<br><small> straight from a spreadsheet.</small>",
 	"tituloReq":"Requirements",
+	"requisito1a":"You should be familiarized with",
+	"requisito1b":"and spreadsheets.",
+	"requisito2a":"You need to have a ",
+	"requisito2b":"Google Docs account",
+	"requisito3a":"And if you wish to use more than markers, you will need to know something about",
+	"requisito3b":"and",
+	"paso1":"Step 1",
+	"descPaso1":"Crate a new spreadsheet from the template",
+	"btnPaso1":"Copy the Map template",
+	"textoPaso1":"You need to be logged in to your Google account to save a copy of the spreadshit in your Drive.",
+	"paso2":"Step 2",
+	"descPaso2":"Publish to the web",
+	"textoPaso2a":"Once you've made a copy of the map template and applied your modifications to the markers to see how it works, you have to",
+	"textoPaso2b":"publish",
+	"textoPaso2c":"your spreadsheet.",
+	"publicarTitulo":"How to publish a spreadsheet",
+	"publicar1":"Select <em>Publish to the web</em> on the File menu."
 
 }
