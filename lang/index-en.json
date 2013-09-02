@@ -38,7 +38,7 @@
 	"desc3a":"You can use data from multiple sources and it supports:",
 	"desc3b":"Markers from coordinates or Geocoding (based on OpenStreetMap Nominatim).",
 	"desc3c":"Published <a href=\"http://es.wikipedia.org/wiki/KML\" target=\"_blank\">KML</a> Layers.",
-	"desc3d":"<a href=\"http://es.wikipedia.org/wiki/Web_Map_Service\" target=\"_blank\">WMS</a> Layers on <code>SRS=EPSG:3857</code>."
-
+	"desc3d":"<a href=\"http://es.wikipedia.org/wiki/Web_Map_Service\" target=\"_blank\">WMS</a> Layers on <code>SRS=EPSG:3857</code>.",
+	"repo":"GitHub Repository"
 
 }
