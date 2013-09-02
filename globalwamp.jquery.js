@@ -242,6 +242,9 @@
       }
       
       $mapa.leaflet(map_options);
+      var overlayTileUrl = 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png';
+      $mapa.data().plugin_leaflet.layerControl.addBaseLayer(new L.TileLayer(overlayTileUrl), 'B&W');
+      //$mapa.data().Lmap.addLayer(new L.TileLayer(overlayTileUrl));
 
       if (_this.opts.vistaInicial.layer !== undefined) {
         $mapa.capaBase( _this.opts.vistaInicial.layer );      
@@ -265,16 +268,21 @@
           $("<h3 />").html(marker.title).appendTo($contenido);
           $("<div />").html(marker.description).appendTo($contenido);
 
-          var i = new L.icon( {
-            iconUrl: marker.layer,
-          });
-          $mapa.addMarker({
+          var marker_opts = {
             title: marker.title,
             icon: i,
             lat: latlng.lat,
             lng: latlng.lng,
             html: $contenido.html(),
-          });
+          };
+
+          if (marker.layer) {
+            var i = new L.icon( {
+              iconUrl: marker.layer,
+            });
+            marker_opts.icon = i;
+          }
+          $mapa.addMarker(marker_opts);
         
         });
 
