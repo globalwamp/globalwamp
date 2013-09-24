@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>GlobalWAMP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="noindex" />
+
+    <link rel="shortcut icon" href="img/ico/favicon.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=News+Cycle:400,700|Merriweather:400,300,700">
+    <style type="text/css">
+      html,body,.wrapper, #mapa {
+        margin:0;
+        width:100%;
+        height:100%;
+      }
+      #mapa {
+        height:300px;
+      }
+      // Just in case. For example, Bootstrap
+      // sets max-width:100%
+      img {
+        max-width:none;
+      }
+
+       .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 12px;
+        z-index:1100;
+        width:50%;
+        background: url('img/overlay.png') repeat 0 0;
+        color: #FFF;
+      }
+
+      .bar .title {
+       
+        display: block;
+        margin: 0 0 6px 0;
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 26px;
+        letter-spacing: -1px;
+      }
+      .bar .description {
+        display: block;
+        color: #EEE;
+        font-size: 12px;
+        line-height: 12px;
+        text-transform: uppercase;
+        word-wrap: break-word;
+      }
+
+      .bar a {
+        color:inherit !important;
+      }
+
+      .close {
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 20px;
+        color: white;
+        text-shadow: 0 1px 0 #ffffff;
+        opacity: 0.2;
+        filter: alpha(opacity=20);
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000000;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 0.4;
+        filter: alpha(opacity=40);
+      }
+
+      button.close {
+        margin-top:-10px;
+        margin-right:-5px;
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        -webkit-appearance: none;
+      }     
+
+      .globalwamp_byn img {
+        /*
+        http://www.karlhorky.com/2012/06/cross-browser-image-grayscale-with-css.html
+        */
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(100%);
+
+      } 
+
+      .leaflet-control-view-center { background-image: url('https://raw.github.com/pwldp/leaflet.viewcenter/master/icon-viewcenter.png'); }
+      a.tag {
+        text-decoration: none;
+        color: grey;
+        padding: 2px;
+      }
+      a.tag.active {
+        color: blue;
+      }
+      a.tag:hover {
+        color: red;
+        text-decoration: underline;
+      }
+      div.entry {
+        width: 200px;
+        float: left;
+        padding: 5px;
+      }
+      div.entry > p.title {
+        font-size: 16px;
+
+      }
+      div.entry > p.description {
+        font-size: 12px;
+      }
+      div.entry > p.entrytags {
+        font-size: 10px;
+        color: #777;
+        font-style: italic;
+      }
+	
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="lib/html5shiv.js"></script>
+    <![endif]-->
+    
+  <link href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" />
+  <![endif]-->
+  <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  <script type="text/javascript" src="http://olopez.com.ar/leaflet.jquery/leaflet.jquery.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sugar/1.3.9/sugar.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.3.1/purl.min.js"></script>  
+  <script type="text/javascript" src="globalwamp.jquery.js"></script> 
+  <script type="text/javascript" src="leaflet.globalwamp.movemarkers.js"></script>    
+  <script type="text/javascript" src="http://fgnass.github.io/spin.js/dist/spin.min.js"></script>        
+  <script type="text/javascript" src="http://fgnass.github.io/spin.js/jquery.spin.js"></script>          
+  
+    
+  <script type="text/javascript">
+    var mapografia;
+    $(document).ready(function() {
+
+      var Mapografia = function(options){
+        var defaults = {
+          selector: '#entries',
+          wampSelector: ''
+        }
+        //primates
+        this.opts = $.extend({},defaults,options);
+        this.$el = $(this.opts.selector);
+        this.tagsContainer = null;
+        this._prepareDiv();
+
+        //la clase de globalwamp a usar, se saca del selector provisto
+        this.wampClass = $(this.opts.wampSelector).data('globalwamp');
+        //copia de entries
+        this.entries = this.wampClass.entries.slice(0);
+        //array con las tags que se encuentran en las entries
+        this.tags = this.getTags();
+        //array con las tags activas (?)
+        this.activeTags = this.tags;
+        //objeto indexado por tags, se duplican las entries
+        this.entriesByTag = this.getIndexedEntries();
+
+        this._buildTagLinks();
+        this._buildEntryDivs();
+      }
+      Mapografia.prototype = {
+        init: function() {
+          
+        },
+        //devuelve array con tags
+        getTags: function() {
+          var ret = [];
+          var _this = this;
+          var notCenter = _this.entries.filter(function(e){return e.resourcetype != 'center'});
+          $.each(notCenter,function(i,e){
+            if(e.tags !== '') {
+              var t = e.tags.split(',');
+              $.each(t,function(i,e){
+                if(ret.indexOf(e) === -1) {
+                  ret.push(e);
+                }
+              });
+            }
+          });
+          return ret;
+        },
+        //returns object with tags and tag count for each one
+        //al pedo, puedo ir a entriesByTag y contar each... deprecated
+        /*
+        getTags: function() {
+          var _this = this;
+          var ret = {};
+          //filtro las que son 'center'
+          var notCenter = _this.wampClass.entries.filter(function(e){return e.resourcetype != 'center'});
+          $.each(notCenter,function(i,e){
+            if(e.tags !== '') {
+              var t = e.tags.split(',');
+              $.each(t,function(i,e){
+                if(ret[e] != undefined) {
+                  ret[e]++;
+                }else{
+                  ret[e] = 1;
+                }
+              });
+            }
+          });
+          return ret;
+        },
+        */
+        //returns object grouped by tag, contains dupes
+        getIndexedEntries: function() {
+          var _this = this;
+          var ret = {};
+          $.each(this.tags,function(i,e){
+            ret[e] = _this.getEntriesByTag(e);
+          });
+          return ret;
+        },
+        //returns array of entries based on tag array
+        getEntriesByTags: function(tagArray) {
+          var ret = [];
+          var _this = this;
+          $.each(tagArray,function(i,e){
+            $.each(_this.entriesByTag[e],function(ii,ee){
+              if(ret.indexOf(ee) === -1){
+                ret.push(ee);
+              }
+            });
+          });
+          return ret;
+        },
+        //returns array with entries containing tag
+        getEntriesByTag: function(tag) {
+          return this.entries.filter(function(e){
+            return e.tags.indexOf(tag) !== -1;
+          });
+        },
+        _buildTagLinks: function (tagsObject) {
+          var _this = this;
+          $.each(_this.activeTags,function(i,e){
+            $('<a href="#" data-tag="'+e+'" class="tag active">'+e+'</a>')
+              .appendTo(_this.tagsContainer);
+          });
+        },
+        _clearEntryDivs: function() {
+          this.$el.find('div.entry').remove();
+        },
+        _buildEntryDivs: function() {
+          var _this = this;
+          $.each(this.getEntriesByTags(this.activeTags),function(i,e){
+            var $div = $('<div class="entry" />');
+            $('<p class="title" />').html(e.title).appendTo($div);
+            $('<p class="description" />').html(e.description).appendTo($div);
+            $('<p class="entrytags" />').html(e.tags).appendTo($div);
+
+            $div.appendTo(_this.$el);
+          });
+        },
+        _prepareDiv: function() {
+          var _this = this;
+          this.tagsContainer = $('<div id="tags"/>').appendTo(_this.$el);
+          this.tagsContainer.on('click','a.tag',function(e) {
+            e.preventDefault();
+            if($(this).hasClass('active')) {
+              _this.activeTags.splice(_this.activeTags.indexOf($(this).data('tag')),1);
+            }else{
+              _this.activeTags.push($(this).data('tag'));
+            }
+            $(this).toggleClass('active');
+            _this._clearEntryDivs();
+            _this._buildEntryDivs();
+            return false;
+          });
+        }
+
+      }
+      var onLoaded = function () {
+        mapografia = new Mapografia({wampSelector:'#mapa'});
+      }
+      var source = $.url().param('source');
+      if (source !== undefined) {
+        $('#mapa').globalwamp({source : source});
+        $('#mapa').one('globalwamp.loaded',onLoaded);
+      } else {
+        $('#mapa').html('Se necesita el parámetro source en la URL');
+      }
+      $('.close').click(function(){
+        $('.bar').fadeOut();
+      })      
+    });
+
+
+  </script>
+
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div id="mapa">
+        <div class="bar" style="display:none">
+          <button class="close" style="float: right;">×</button>
+          <span class="title"></span>
+          <span class="description"></span>
+        </div>
+      </div>
+      <div id="entries">
+      </div>
+    </div>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43721656-1', 'globalwamp.github.io');
+    ga('send', 'pageview');
+
+  </script>    
+  </body>
+
+</html>
