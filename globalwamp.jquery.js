@@ -31,7 +31,8 @@
         resource: "resource",
         resourcetype: "resourcetype",
         zoom: "zoom",
-        description: "description"
+        description: "description",
+        tags: "tags"
       },
       bar_class: '.bar',
       bar_title_class: '.title',
@@ -58,6 +59,7 @@
       $.when( _this.getDoc() ).done(function() {
           _this.magic();  
           _this.$el.spin(false);
+          _this.$el.trigger('globalwamp.loaded');
       }).fail(function() {
         console.log('Invalid source');
         _this.$el.spin(false);
@@ -133,7 +135,8 @@
           resource: "gsx$resource.$t",
           resourcetype: "gsx$resourcetype.$t",
           zoom: "gsx$zoom.$t",
-          description: "gsx$description.$t"
+          description: "gsx$description.$t",
+          tags: "gsx$tags.$t"
       };
 
       _this.entries = _this._mapFields(true);
