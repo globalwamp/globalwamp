@@ -6,16 +6,17 @@
 
       body {
         padding-top:0px;
+        background-color:#E9E6DF;
       }
       header {
         
-        background-image: url(../img/bg.png),url(../img/fondo_header.jpg) ;
+        /*background-image: url(../img/bg.png),url(../img/fondo_header.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 100% auto !important;
         background-position: 0 0 , 0 bottom;
-        background-attachment: fixed!important;
-        background-color:#009FEF;
-        box-shadow: 0 0 55px #4A5896 inset;
+        background-attachment: fixed!important;*/
+        background-color:#ff9f00;
+        /*box-shadow: 0 0 55px #4A5896 inset;*/
         color: white;
         height: auto;  
         margin: 0 auto; 
@@ -28,24 +29,20 @@
       header img {
         max-width: 45%;
       }
-      section  h2{
-        font-family: 'Trade Winds', cursive;
-      }
-      section h3{
-        font-family: 'Merienda One', cursive;
-      }
-      section h4{
-        font-family: 'Merienda One', cursive;
+      section h1, section  h2, section h3, section h4{
+      font-family: 'Montserrat Alternates', sans-serif;
+      text-rendering: optimizelegibility;
+      color: #B93636;
       }
       #descripcion {
         
-        background-image: url(../img/bg.png),url(../img/descripcion.jpg) ;
+        /*background-image: url(../img/bg.png),url(../img/descripcion.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
         background-attachment: fixed!important;
         background-color:#055072;
-        box-shadow: 0 0 55px #022d85 inset;
+        box-shadow: 0 0 55px #022d85 inset;g
         color: white;
         height: auto;  
         margin: 0 auto; 
@@ -56,13 +53,13 @@
       #descricion a {color:#FFD600!important;}
       #generator{
         
-        background-image: url(../img/bg.png),url(../img/generator.jpg) ;
+        /*background-image: url(../img/bg.png),url(../img/generator.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
         background-attachment: fixed!important;
         background-color:#3d6f42;
-        box-shadow: 0 0 55px #015c0a inset;
+        box-shadow: 0 0 55px #015c0a inset;*/
         color: white;
         height: auto;  
         margin: 0 auto; 
@@ -72,13 +69,13 @@
 
       }
       #comoseusa{
-        background-image: url(../img/bg.png),url(../img/comoseusa.jpg) ;
+       /* background-image: url(../img/bg.png),url(../img/comoseusa.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
         background-attachment: fixed!important;
         background-color:#f23901;
-        box-shadow: 0 0 55px #bf0f02 inset;
+        box-shadow: 0 0 55px #bf0f02 inset;*/
         color: white;
         height: auto;  
         margin: 0 auto; 
@@ -88,13 +85,13 @@
 
       }
       #ejemplos{
-        background-image: url(../img/bg.png),url(../img/ejemplo.jpg) ;
+       /* background-image: url(../img/bg.png),url(../img/ejemplo.jpg) ;
         background-repeat: repeat, no-repeat;
         background-size:4px 4px, 106% !important;
         background-position: 0 0 , 0px 0px;
         background-attachment: fixed!important;
         background-color:#ff0000;
-        box-shadow: 0 0 55px #09000d inset;
+        box-shadow: 0 0 55px #09000d inset;*/
         color: white;
         height: auto;  
         margin: 0 auto; 
@@ -107,39 +104,40 @@
         padding: 5px;
       }
       .hero-unit h1 {
-        font-family: 'News Cycle',sans-serif;
+        font-family: 'Montserrat Alternates', sans-serif;
         text-rendering: optimizelegibility;
-        color: white;        
+        color: #B93636;        
       }
       .hero-unit h2 {
-        font-family: 'Merriweather',serif !important;        
+        font-family: 'Montserrat Alternates', sans-serif!important;        
         text-rendering: optimizelegibility;
-        color: white;
         text-shadow:0 0 3px black;
-      }
-      h2 small {
-        font-size: 7vw;
         color:white;
+        /*color: #B93636;*/
       }
-      .hero-unit h4 {
-        font-family: 'Merriweather',serif !important;        
+      
+      .hero-unit h4 {font-family: 'Montserrat Alternates', sans-serif !important;        
         text-rendering: optimizelegibility;
+        color: #B93636;
       }
       .page-header {
         padding-bottom: 9px;
-        margin: 0px 0 30px;
-        border-bottom: none;
-        color: white;}
+        margin: 0px;
+        border-bottom: none;}
 
       .page-header h2 {
-        color: white;
+        color: #B93636;
         background: inherit;
         background: none;
-        font-size: 9vw;
-        line-height: 6vw;
+        font-size: 4em;
+        line-height: 0.7em;
         text-align: center;
-        text-shadow:0 0 5px black;
-        margin-top: -15px;
+        text-shadow:0 0 8px white;
+        margin-top: 15px;
+      }
+      .page-header h2 small {
+
+        font-size: 0.7em;
       }
       .alert {
         border: 1px solid #c09853;
@@ -200,7 +198,7 @@
         font-weight: 200;
         line-height: 30px;
         color: inherit;
-        background-color: #eeeeee;
+        background-color: #B93636;
         -webkit-border-radius: 0px;
         -moz-border-radius: 0px;
         border-radius: 0px;
@@ -259,22 +257,18 @@
        .lead .textorecto .btn {
         margin-bottom: 15px;
       }
-      .tradewinds{
-        font-family: 'Trade Winds', cursive;
-      }
-      .Merienda {
-        font-family: 'Merienda One', cursive;
-      }
 
       .bg{
-        background: rgba(0,0,0,0.5);
-        box-shadow: 0 0 5px black inset;
+        background: rgba(255,255,255,0.5);
+        /*box-shadow: 0 0 5px black inset;*/
+        border-radius: 5px;
         border:none;
       }
 
       .thumbnail{
-        background: rgba(0,0,0,0.5);
-        box-shadow: 0 0 5px black inset;
+        background: #B93636;
+        padding: 30px;
+        /*box-shadow: 0 0 5px black inset;*/
         border:none;
       }
       code{
@@ -294,11 +288,11 @@
         color:white;
       }
       #generator legend {
-        color:#b5ddae;
+        color:#B93636;
         ;
       }
       #generator a {
-        color:#2cc412;
+        color:#B93636;
       }
       #generator a.btn  {
         color:white;
