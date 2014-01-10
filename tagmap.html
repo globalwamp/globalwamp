@@ -142,7 +142,7 @@
   <![endif]-->
   <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-  <script type="text/javascript" src="http://olopez.com.ar/leaflet.jquery/leaflet.jquery.js"></script>
+  <script type="text/javascript" src="../../leaflet.jquery/leaflet.jquery.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/sugar/1.3.9/sugar.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.3.1/purl.min.js"></script>  
   <script type="text/javascript" src="globalwamp.jquery.js"></script> 
@@ -157,32 +157,64 @@
 
       var Mapografia = function(options){
         var defaults = {
+          //el selector donde se van a construir las entries
           selector: '#entries',
+          //el selector que tiene la clase globalwamp en el data()
           wampSelector: ''
         }
         //primates
         this.opts = $.extend({},defaults,options);
         this.$el = $(this.opts.selector);
         this.tagsContainer = null;
-        this._prepareDiv();
-
+        
         //la clase de globalwamp a usar, se saca del selector provisto
-        this.wampClass = $(this.opts.wampSelector).data('globalwamp');
-        //copia de entries
-        this.entries = this.wampClass.entries.slice(0);
-        //array con las tags que se encuentran en las entries
-        this.tags = this.getTags();
-        //array con las tags activas (?)
-        this.activeTags = this.tags;
-        //objeto indexado por tags, se duplican las entries
-        this.entriesByTag = this.getIndexedEntries();
+        this.wampClass = null;
 
-        this._buildTagLinks();
-        this._buildEntryDivs();
+        //copia de entries
+        this.entries = null;
+
+        this.mapProps = {};
+        //array con las tags que se encuentran en las entries
+        this.tags = [];
+        //array con las tags activas (?)
+        this.activeTags = [];
+        //objeto indexado por tags, se duplican las entries
+        this.entriesByTag = [];
+
+        this.init();
       }
       Mapografia.prototype = {
         init: function() {
-          
+          var options = this.opts;
+
+          this.$el = $(options.selector);
+          this.wampClass = $(options.wampSelector).data('globalwamp');
+          this.entries = this.wampClass.entries.slice(0);
+
+          //captura la entry 'center' y removerla del array de entries
+          this.getMapProps();
+
+          //coleccion de tags, sin el center/props
+          this.tags = this.getTags();
+          this.activeTags = this.tags.slice(0);
+
+          //entries indexadas
+          this.entriesByTag = this.getIndexedEntries();
+
+          //preparar html
+          this._prepareDiv();
+          this._buildTagLinks();
+          this._buildEntryDivs();
+        },
+        getMapProps: function() {
+          var entryIndex = 0;
+          for(var ii = 0; ii < this.entries.length; ii++) {
+            if(this.entries[ii].resourcetype === 'center') {
+              entryIndex = ii;
+              break;
+            }
+          }
+          this.mapProps = this.entries.splice(entryIndex,1)[0];
         },
         //devuelve array con tags
         getTags: function() {
@@ -197,33 +229,16 @@
                   ret.push(e);
                 }
               });
+            }else{
+              //las que no tienen tags sin dificiles de controlar,
+              //les pongo un tag 'sin tags' para poder manejarlas
+              // --- indexOf("") siempre da 0 en lugar de -1
+              e.tags = "sin tags";
+              ret.push('sin tags');
             }
           });
           return ret;
         },
-        //returns object with tags and tag count for each one
-        //al pedo, puedo ir a entriesByTag y contar each... deprecated
-        /*
-        getTags: function() {
-          var _this = this;
-          var ret = {};
-          //filtro las que son 'center'
-          var notCenter = _this.wampClass.entries.filter(function(e){return e.resourcetype != 'center'});
-          $.each(notCenter,function(i,e){
-            if(e.tags !== '') {
-              var t = e.tags.split(',');
-              $.each(t,function(i,e){
-                if(ret[e] != undefined) {
-                  ret[e]++;
-                }else{
-                  ret[e] = 1;
-                }
-              });
-            }
-          });
-          return ret;
-        },
-        */
         //returns object grouped by tag, contains dupes
         getIndexedEntries: function() {
           var _this = this;
@@ -278,10 +293,11 @@
           this.tagsContainer = $('<div id="tags"/>').appendTo(_this.$el);
           this.tagsContainer.on('click','a.tag',function(e) {
             e.preventDefault();
+            var tag = $(this).data('tag');
             if($(this).hasClass('active')) {
-              _this.activeTags.splice(_this.activeTags.indexOf($(this).data('tag')),1);
+              _this.activeTags.splice(_this.activeTags.indexOf(tag),1);
             }else{
-              _this.activeTags.push($(this).data('tag'));
+              _this.activeTags.push(tag);
             }
             $(this).toggleClass('active');
             _this._clearEntryDivs();

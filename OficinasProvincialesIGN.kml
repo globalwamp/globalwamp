@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Oficinas Provinciales IGN</name>
+  <description><![CDATA[
+]]></description>
+  <Style id="style2">
+    <IconStyle>
+      <Icon>
+        <href>http://www.ign.gob.ar/images/logos/argenmapIco.png</href>
+      </Icon>
+      <hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"></hotSpot>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>Marcelo T. de Alvear 145</name>
+    <description><![CDATA[Resistencia, Chaco<br>
+    <h4>Responsable</h4>
+	Esp Ing. Daniel Francisco Sanguinetti (Director en Dirección de Información Territorial)
+	<h4>Dirección</h4>
+	Marcelo T. de Alvear 145 9º Piso. Oficina 3. (CP 3500) Resistencia, Chaco.
+	<h4>Teléfono</h4>
+	0362-4456426 - 4448000   Int. 6426   Centrex 56426
+	<h4>Fax</h4>
+	0362- 4448000   Int. 8005
+	<h4>Celular</h4>
+	0362-154255838
+	<h4>Horario de Atención al Público</h4>
+	8:00 a 12hs]]>
+    </description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-58.986874,-27.449253,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Av Benjamin Aráoz 96</name>
+    <description><![CDATA[San Miguel de Tucumán, Tucumán<br>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-65.195503,-26.832832,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Mariano Moreno 135</name>
+    <description><![CDATA[Río Gallegos, Santa Cruz<br>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-69.221504,-51.624092,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Saavedra 2260</name>
+    <description><![CDATA[Santa Fe<br>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-60.716560,-31.647457,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Av Sarmiento 668</name>
+    <description><![CDATA[Rawson, Chubut<br>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-65.103226,-43.301758,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

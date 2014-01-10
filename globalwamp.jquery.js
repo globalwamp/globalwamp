@@ -1,3 +1,25 @@
+  //prueba de cached scripts
+  var createCache = function( requestFunction ) {
+    var cache = {};
+    return function( key, callback ) {
+      if ( !cache[ key ] ) {
+        cache[ key ] = $.Deferred(function( defer ) {
+          requestFunction( defer, key );
+        }).promise();
+      }
+      return cache[ key ].done( callback );
+    };
+  };
+  var loadKML = createCache(function(defer, url){
+    $.ajax({
+      url: url,
+      dataType: "xml",
+      mimeType: "text/xml",
+      success: defer.resolve,
+      error: defer.reject
+    });
+  });
+
 /**
  *
  * globalwamp. Plugin de jquery que carga una vista de mapa
@@ -178,7 +200,7 @@
           if (grupos.center[0].description ) {
             $(_this.opts.bar_class).show();
             $(_this.opts.bar_class + ' ' + _this.opts.bar_description_class).html(grupos.center[0].description);
-          }          
+          }
 
           deferred.resolve();
           return deferred;    
@@ -258,7 +280,7 @@
         $mapa.agregarCapaWMS({
           nombre: layer.title,
           layer: layer.layer,
-          url: layer.resrouce
+          url: layer.resource
         });
       });
       */
@@ -300,12 +322,16 @@
         $mapa.find('.bar').hide();
         $mapa.enableMarkerDragging();
       }
-      
+      //pasar esto a leaflet.jquery! al plugin de kml
       $(_this.kml).each(function(k, kml) {
-        $mapa.addKML({
-          nombre: kml.title,
-          url: 'http://mapa.ign.gob.ar/mapa/proxy/?url=' + encodeURIComponent(kml.resource)
+        loadKML("http://crossproxy.aws.af.cm?u=" + encodeURIComponent(kml.resource))
+        .then(function(data){
+          $mapa.addKMLfromXML(data);
         });
+        // $mapa.addKML({
+        //   nombre: kml.title,
+        //   url: kml.resource
+        // });
       });
       
     },
@@ -502,7 +528,6 @@
       }
       return coord;
     }
-
   };
 
   // The actual plugin
